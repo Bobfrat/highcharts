@@ -161,7 +161,12 @@ class WindbarbSeries extends ColumnSeries {
          *
          * @since 6.1.0
          */
-        xOffset: 0
+        xOffset: 0,
+        /**
+         * Include directional arrow head. Traditional wind barbs do not include
+         * an arrow.
+         */
+        arrowHead: true
     });
 
     /* *
@@ -279,15 +284,31 @@ class WindbarbSeries extends ColumnSeries {
             );
         }
 
-        // The stem and the arrow head
+        // The stem and the (optional) arrow head
         path = [
             ['M', 0, 7 * u], // base of arrow
-            ['L', -1.5 * u, 7 * u],
-            ['L', 0, 10 * u],
-            ['L', 1.5 * u, 7 * u],
+            // ['L', -1.5 * u, 7 * u],
+            // ['L', 0, 10 * u],
+            // ['L', 1.5 * u, 7 * u],
+            // ['L', 0, 7 * u],
+            // ['L', 0, -10 * u] // top
+        ];
+
+        if (this.options.arrowHead) {
+            path.push(
+                ['L', -1.5 * u, 7 * u],
+                ['L', 0, 10 * u],
+                ['L', 1.5 * u, 7 * u]
+            )
+        } else {
+            path.push(
+                ['L']
+            )
+        }
+        path.push(
             ['L', 0, 7 * u],
             ['L', 0, -10 * u] // top
-        ];
+        )
 
         // For each full 50 knots, add a pennant
         barbs = (knots - knots % 50) / 50; // pennants
