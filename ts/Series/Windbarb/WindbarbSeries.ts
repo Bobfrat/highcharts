@@ -300,10 +300,6 @@ class WindbarbSeries extends ColumnSeries {
                 ['L', 0, 10 * u],
                 ['L', 1.5 * u, 7 * u]
             )
-        } else {
-            path.push(
-                ['L']
-            )
         }
         path.push(
             ['L', 0, 7 * u],

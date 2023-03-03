@@ -30,6 +30,7 @@ export interface WindbarbSeriesOptions extends ColumnSeriesOptions {
     vectorLength?: number;
     xOffset?: number;
     yOffset?: number;
+    arrowHead?: boolean;
 }
 
 /* *
